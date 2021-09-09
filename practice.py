@@ -10,13 +10,12 @@ class AppGui(tkinter.Tk):
         self.initialize()
     
     def initialize(self):
-        pass
+        self.title("DARK SOULS™ III SaveAutomation")
+        self.geometry("600x300")
+        self.minsize(600,300)
+        self.maxsize(900,600)
+        self.call('wm', 'iconphoto', self._w,PhotoImage(file='image.ico'))
+        self.iconphoto(True, PhotoImage(file='image.ico'))
 
 root = AppGui(NONE)
-root.title("DARK SOULS™ III SaveAutomation")
-root.geometry("600x300")
-root.minsize(600,300)
-root.maxsize(900,600)
-root.call('wm', 'iconphoto', root._w,PhotoImage(file='image.ico'))
-root.iconphoto(True, PhotoImage(file='image.ico'))
 root.mainloop()
