@@ -1,17 +1,50 @@
-from os import name
+import builtins
 from tkinter import *
 from tkinter import filedialog
 import tkinter
+import os
+import shutil
+
+"""
+path.txt 내용
+
+총 4줄
+
+1. 그래픽 파일 이름(원본)
+2. 세이브 폴더 경로 (원본)
+3. 다크소울 세이브 폴더위치 
+4. 세이브 파일 벡업할 폴더 위치
+"""
+
+
 
 class AppGui(tkinter.Tk):
 
-    def FileName(self):
+    def FileName():
+        #그래픽파일 경로(원본)
         filename = filedialog.askopenfilename(initialdir="/", title="Select file",filetypes=(("xml files", "*.xml"),("all files", "*.*")))
-        print(filename)
+        f = open("path.txt","a")
+        f.write(os.path.basename(filename)+"\n")
+        f.close()
 
-    def FolderName(slef):
+    def FolderName():
+        #세이브폴더 경로(원본)
         foldername = filedialog.askdirectory()
-        print(foldername)
+        f = open("path.txt", "a")
+        f.write(foldername+"\n")
+        f.close()
+    
+    def Copy():
+        f = open("path.txt","r")
+        filename = f.readline()
+        filename = filename.strip()
+
+        folderpath = f.readline()
+        filename = filename.strip()
+        print(filename)
+        print(folderpath)
+        f.close()
+
 
     def __init__(self):
             self.root = Tk()
@@ -22,12 +55,18 @@ class AppGui(tkinter.Tk):
             self.root.call('wm', 'iconphoto', self._w,PhotoImage(file='image.ico'))#윈도우 이미지 변경
             self.root.iconphoto(True, PhotoImage(file='image.ico'))#타이틀 이미지 변경
             
-            self.filenameButton = Button(text="file", command=self.FileName)#파일 경로버튼 생성
+            self.filenameButton = Button(text="file", command= AppGui.FileName)#파일이름 저장 버튼
             self.filenameButton.pack()
 
-            self.foldernameButton = Button(text="folder", command=self.FolderName)#폴더 경로버튼 생성
-            self.foldernameButton.pack()
-             
+            self.folderpathButton = Button(text="folder",command=AppGui.FolderName)#세이브 파일 경로 저장 버튼
+            self.folderpathButton.pack()
+
+            self.SavefolderButton = Button(text="saveFolder", command=AppGui.FolderName)
+            self.SavefolderButton.pack()
+
+            self.copyButton = Button(text="copy", command=AppGui.Copy)
+            self.copyButton.pack()
+
             self.root.mainloop()
 
 if __name__ == '__main__':
