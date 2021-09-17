@@ -20,6 +20,14 @@ path.txt 내용
 
 class AppGui(tkinter.Tk):
 
+    #입력값 텍스트 파일에 저장
+    def UserName(name):
+        path_list = ["C:\\Users\\",name,"\\AppData\\Roaming\\Dark Souls III"]
+        f = open("path.txt","a")
+        f.write(name+"\n")
+        f.write(''.join(path_list)) #C:\Users\name\AppData\Roaming\Dark Souls III
+        f.close()
+
 
     def __init__(self):
             self.root = Tk()
@@ -34,16 +42,9 @@ class AppGui(tkinter.Tk):
             self.e = Entry(self.root, width= 30)
             self.e.insert(0,"윈도우 사용자 이름 입력")
             self.e.pack()
-            
-            #엔트리값 가져오는 함수 
-            def UserName():
-                name = self.e.get()
-                f = open("path.txt","a")
-                f.write(name+"\n")
-                f.close()
-                
-
-            self.UsernameButton = Button(text="저장", command= UserName)#유저이름 저장 버튼
+   
+            #유저이름 저장 버튼
+            self.UsernameButton = Button(text="저장", command=lambda: AppGui.UserName(self.e.get()))
             self.UsernameButton.pack()
 
             self.root.mainloop()
