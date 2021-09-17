@@ -6,16 +6,8 @@ import os
 import shutil
 
 """
-path.txt 내용
-
-총 4줄
-
-1. 그래픽 파일 이름(원본)
-2. 세이브 폴더 경로 (원본)
-3. 다크소울 세이브 폴더위치 
-4. 세이브 파일 벡업할 폴더 위치
+아무말
 """
-
 
 
 class AppGui(tkinter.Tk):
