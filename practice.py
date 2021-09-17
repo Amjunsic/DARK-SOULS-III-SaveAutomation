@@ -20,31 +20,6 @@ path.txt 내용
 
 class AppGui(tkinter.Tk):
 
-    def FileName():
-        #그래픽파일 경로(원본)
-        filename = filedialog.askopenfilename(initialdir="/", title="Select file",filetypes=(("xml files", "*.xml"),("all files", "*.*")))
-        f = open("path.txt","a")
-        f.write(os.path.basename(filename)+"\n")
-        f.close()
-
-    def FolderName():
-        #세이브폴더 경로(원본)
-        foldername = filedialog.askdirectory()
-        f = open("path.txt", "a")
-        f.write(foldername+"\n")
-        f.close()
-    
-    def Copy():
-        f = open("path.txt","r")
-        filename = f.readline()
-        filename = filename.strip()
-
-        folderpath = f.readline()
-        filename = filename.strip()
-        print(filename)
-        print(folderpath)
-        f.close()
-
 
     def __init__(self):
             self.root = Tk()
@@ -55,17 +30,21 @@ class AppGui(tkinter.Tk):
             self.root.call('wm', 'iconphoto', self._w,PhotoImage(file='image.ico'))#윈도우 이미지 변경
             self.root.iconphoto(True, PhotoImage(file='image.ico'))#타이틀 이미지 변경
             
-            self.filenameButton = Button(text="file", command= AppGui.FileName)#파일이름 저장 버튼
-            self.filenameButton.pack()
+            #윈도우 사용자 이름 입력 엔트리
+            self.e = Entry(self.root, width= 30)
+            self.e.insert(0,"윈도우 사용자 이름 입력")
+            self.e.pack()
+            
+            #엔트리값 가져오는 함수 
+            def UserName():
+                name = self.e.get()
+                f = open("path.txt","a")
+                f.write(name+"\n")
+                f.close()
+                
 
-            self.folderpathButton = Button(text="folder",command=AppGui.FolderName)#세이브 파일 경로 저장 버튼
-            self.folderpathButton.pack()
-
-            self.SavefolderButton = Button(text="saveFolder", command=AppGui.FolderName)
-            self.SavefolderButton.pack()
-
-            self.copyButton = Button(text="copy", command=AppGui.Copy)
-            self.copyButton.pack()
+            self.UsernameButton = Button(text="저장", command= UserName)#유저이름 저장 버튼
+            self.UsernameButton.pack()
 
             self.root.mainloop()
 
