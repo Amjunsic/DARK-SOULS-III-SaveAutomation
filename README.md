@@ -1,2 +1,5 @@
-# GitHubPractice
-Practice to GitHub
+# DARK-SOULS-III-SaveAutomation
+
+매우 조잡한 다크소울3 세이브파일 백업 프로그램입니다.
+
+사용시 본인 컴퓨터의 사용자이름을 입력하여 본인의 다크소울3 세이브 파일폴더의 경로를 추적하여 세이브 파일을 백업,변경합니다.
